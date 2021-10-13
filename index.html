@@ -8,18 +8,20 @@ enabled: true
 description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하는 예비 개발자입니다."
 ---
 
-<div class="container">
+<div class="container-fluid">
+
+    {% assign author = site.author[site.nickname] %}
 
     {% if page.url=='/' %}
 
-    <div class="bg-light mt-5 p-5">
-        <div class="">
-            <div class="">
-                <img src="" alt="">
+    <div class="mt-5 profile-wrap">
+        <div class="profile-card">
+            <div class="rounded-circle profile-img" style="background-image: url({{site.baseurl}}/{{author.avatar}});">
+
             </div>
-            <div>
+            <div class="ms-4 p-3">
                 <div>
-                    {{site.author.name}}
+                    {{author.name}}
                 </div>
                 <div>{{site.description}}</div>
             </div>
@@ -28,35 +30,98 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 
     {% endif %}
 
-    <!-- card -->
-    <div>
+    <!-- posts wrapper -->
+    <div class="my-5">
 
-        {% for post in site.posts %}
-        <div class="d-flex my-3">
-            <div class="flex-fill">
-                <div>
-                    <h1 class="mb-3">
-                        <a href="{{site.baseurl}}{{post.url}}" class="nav-link">
-                            {{post.title | truncate: 20, '...'}}
-                        </a>
-                    </h1>
-                    <p class="mb-3 lead">
-                        {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
-                    </p>
+        <!-- featured -->
+        <div class="my-5">
+            <div class="my-3">
+                <h3 class="featured">
+                    <span>Featured</span>
+                </h3>
+            </div>
+            {% for post in site.posts %}
+            {% if post.featured %}
+
+            <div class="d-flex my-3 card-border">
+                <div class="flex-fill">
+                    <div>
+                        <h3 class="mb-3">
+                            <a href="{{site.baseurl}}{{post.url}}" class="link-title">
+                                {{post.title | truncate: 20, '...'}}
+                            </a>
+                        </h3>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="mb-3 lead-xs">
+                            {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
+                        </p>
+                    </div>
+                    <div>
+                        <a href="{{site.baseurl}}{{post.url}}" class="btn btn-outline-dark">Read More</a>
+                    </div>
                 </div>
-                <hr>
-                <div>
-                    desc
-                </div>
-                <div>
-                    <a href="{{site.baseurl}}{{post.url}}" class="btn btn-dark">Read More</a>
+                <div class="col-md-4 d-none d-md-block ms-5 position-relative"
+                    style="background-size:cover;box-sizing:border-box;background-image:url({{site.baseurl}}/{{ post.image }});">
+                    <a href="{{site.baseurl}}{{post.url}}" class="stretched-link"></a>
                 </div>
             </div>
-            <div class="col-md-4 d-none d-md-block ms-5"
-                style="background-size:cover;box-sizing:border-box;background-image:url({{site.baseurl}}/{{ post.image }});">
-            </div>
+
+            {% endif %}
+            {% endfor %}
+
         </div>
-        {% endfor %}
+
+        <!-- card -->
+        <div class="my-5">
+
+            <div>
+                <h3 class="posts">
+                    <span>Posts</span>
+                    <div class="float-end">{{site.posts | size}}
+                        {% assign size = site.posts | size %}
+                        {% if size > 1 %}
+                        posts
+                        {% else %}
+                        post
+                        {% endif %}
+                    </div>
+                </h3>
+            </div>
+
+            <div class="row-lg g-1">
+                {% for post in site.posts %}
+                <div class="col-lg col-xl-4">
+                    <div class="card-border d-flex m-3">
+                        <div class="flex-fill">
+                            <div>
+                                <h3 class="mb-3">
+                                    <a href="{{site.baseurl}}{{post.url}}" class="link-title">
+                                        {{post.title | truncate: 20, '...'}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <hr>
+                            <div>
+                                <p class="mb-3 lead-xs">
+                                    {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
+                                </p>
+                            </div>
+                            <div>
+                                <a href="{{site.baseurl}}{{post.url}}" class="btn btn-outline-dark">Read More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none d-md-block ms-5 position-relative"
+                            style="background-size:cover;background-image:url({{site.baseurl}}/{{ post.image }});">
+                            <a href="{{site.baseurl}}{{post.url}}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
 
     </div>
 

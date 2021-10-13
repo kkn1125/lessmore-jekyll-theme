@@ -2,7 +2,7 @@
 layout: post
 date:   2021-10-12 20:46:47 +0900
 title:  "Welcome to Jekyll!"
-author: Kimson
+author: kimson
 categories: [ communication, people ]
 tags: [first, life]
 image: assets/images/post/covers/cover-01.jpg

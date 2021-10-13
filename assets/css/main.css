@@ -521,6 +521,16 @@ progress {
     font-weight: 300
 }
 
+.lead-sm{
+    font-size: 1rem;
+    font-weight: 300
+}
+
+.lead-xs{
+    font-size: 0.9rem;
+    font-weight: 200
+}
+
 .display-1 {
     font-size: calc(1.625rem + 4.5vw);
     font-weight: 300;
@@ -8692,6 +8702,11 @@ fieldset:disabled .btn {
 
 .text-opacity-100 {
     --bs-text-opacity: 1
+}
+
+.bg-white {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important
 }
 
 .bg-primary {
