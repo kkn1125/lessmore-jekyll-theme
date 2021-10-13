@@ -23,6 +23,16 @@
         <link rel="icon" type="image/png" sizes="96x96" href="{{site.favicon}}/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="{{site.favicon}}/favicon-16x16.png">
         <link rel="manifest" href="{{site.favicon}}/manifest.json">
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+            integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <!-- googl font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet">
+        <!-- AOS js -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
         <title>{{site.title}}</title>
 
@@ -37,10 +47,23 @@
     <body>
         {% include nav.html %}
 
-        {{ content }}
+        <div class="">
+            <!-- Content -->
+            <main role="main" class="container">
+                {{ content }}
+            </main>
+            <div class="my-5 py-5"></div>
+        </div>
 
         <script src="{{site.baseurl}}/assets/js/main.js"></script>
+
+        {% include footer.html %}
+
         <!-- add scripts ... -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
         {% include addScript.html %}
     </body>
 
