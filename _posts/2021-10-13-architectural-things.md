@@ -1,11 +1,11 @@
 ---
 layout: post
 date:   2021-10-12 20:46:47 +0900
-title:  "Welcome to Jekyll!"
+title:  "What do you think about architecture?"
 author: Kimson
 categories: [ communication, people ]
 tags: [first, life]
-image: assets/images/post/covers/cover-01.jpg
+image: assets/images/post/covers/cover-02.jpg
 description: "블로그 홈에서 나타나는 간단한 설명 글 입니다."
 featured: false
 hidden: false

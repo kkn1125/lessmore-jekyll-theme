@@ -10,9 +10,11 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 
 <div class="container">
 
+    {% if page.url=='/' %}
+
     <div class="bg-light mt-5 p-5">
-        <div>
-            <div>
+        <div class="">
+            <div class="">
                 <img src="" alt="">
             </div>
             <div>
@@ -24,4 +26,42 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
         </div>
     </div>
 
+    {% endif %}
+
+    <!-- card -->
+    <div>
+
+        {% for post in site.posts %}
+        <div class="d-flex my-3">
+            <div class="flex-fill">
+                <div>
+                    <h1 class="mb-3">
+                        <a href="{{site.baseurl}}{{post.url}}" class="nav-link">
+                            {{post.title | truncate: 20, '...'}}
+                        </a>
+                    </h1>
+                    <p class="mb-3 lead">
+                        {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
+                    </p>
+                </div>
+                <hr>
+                <div>
+                    desc
+                </div>
+                <div>
+                    <a href="{{site.baseurl}}{{post.url}}" class="btn btn-dark">Read More</a>
+                </div>
+            </div>
+            <div class="col-md-4 d-none d-md-block ms-5"
+                style="background-size:cover;box-sizing:border-box;background-image:url({{site.baseurl}}/{{ post.image }});">
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
 </div>
+<!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+    title="Tooltip on top">
+    Tooltip on top
+</button> -->

@@ -1,0 +1,32 @@
+/*!
+ * less more jekyll theme(https://github.com/kkn1125/lessmore-jekyll-theme)
+ */
+:root{
+	--lm-gf-noto: 'Noto Sans KR', sans-serif;
+}
+
+html,
+body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow-x:hidden;
+	/* padding-top: 56px; */
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.callout{
+	padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+.callout-info{
+	border-left-color: rgb(85, 164, 255);
+}
