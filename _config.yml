@@ -1,7 +1,7 @@
 # Welcome to Jekyll!
 #
 
-title: Devkimson
+title: Less, More
 description: 사이트를 설명하는 글귀를 적으시면 됩니다.
 favicon: assets/images/favicon
 logo: assets/images/logo/logo-black.png
@@ -9,15 +9,19 @@ url: "https://kkn1125.github.io"
 baseurl: ""
 blog: https://kkn1125.github.io
 email: chaplet01@gmail.com
+disqus: "devkimson"
+nickname: kimson
 twitter_username: kimson
 github_username: kimson
 lessmore: https://github.com/kkn1125/lessmore-jekyll-theme
 
 author:
-  name: kimson
-  desc: less, more를 사랑해주셔서 감사합니다.
-  web: https://kkn1125.github.io
-  github: https://github.com/kkn1125
+  kimson:
+    name: kimson
+    avatar: assets/images/profile.jpg
+    desc: less, more를 사랑해주셔서 감사합니다.
+    web: https://kkn1125.github.io
+    github: https://github.com/kkn1125
 
 include: ["_pages"]
 permalink: /:title/

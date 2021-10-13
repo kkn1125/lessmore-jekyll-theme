@@ -7,30 +7,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- favicon -->
         <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="{{site.favicon}}/ms-icon-144x144.png">
+        <meta name="msapplication-TileImage" content="{{site.baseurl}}/{{site.favicon}}/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <link rel="apple-touch-icon" sizes="57x57" href="{{site.favicon}}/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="{{site.favicon}}/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{site.favicon}}/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{site.favicon}}/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{site.favicon}}/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{site.favicon}}/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{site.favicon}}/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{site.favicon}}/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{site.favicon}}/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{site.favicon}}/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{site.favicon}}/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="{{site.favicon}}/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{site.favicon}}/favicon-16x16.png">
-        <link rel="manifest" href="{{site.favicon}}/manifest.json">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/{{site.favicon}}/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"
+            href="{{site.baseurl}}/{{site.favicon}}/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{site.baseurl}}/{{site.favicon}}/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{site.baseurl}}/{{site.favicon}}/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{site.baseurl}}/{{site.favicon}}/favicon-16x16.png">
+
+        <link rel="manifest" href="{{site.baseurl}}/{{site.favicon}}/manifest.json">
+
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
         <!-- font awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
             integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
         <!-- googl font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
             rel="stylesheet">
+
         <!-- AOS js -->
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -39,26 +47,37 @@
         {% seo %}
 
         <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css">
+        <link rel="stylesheet" href="{{site.baseurl}}/assets/css/syntax.css">
 
         <!-- add custom css ... -->
         {% include addHead.html %}
     </head>
 
     <body>
+        <script src="{{site.baseurl}}/assets/js/darkMode.js"></script>
+
         {% include nav.html %}
+
+        <!-- Search Results -->
+        <div id="lunrsearchresults">
+            <ul class="mb-0"></ul>
+        </div>
 
         <div class="">
             <!-- Content -->
-            <main role="main" class="container">
+            <main role="main" class="">
                 {{ content }}
+                {% if page.url == '/' %}
+                <div class="my-5 py-5" id="divider"></div>
+                {% endif %}
             </main>
-            <div class="my-5 py-5"></div>
         </div>
 
         <script src="{{site.baseurl}}/assets/js/main.js"></script>
 
         {% include footer.html %}
-
+        {% include scrollHandler.html %}
+        <div id="pageEnd"></div>
         <!-- add scripts ... -->
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>
