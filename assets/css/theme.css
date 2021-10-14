@@ -49,6 +49,16 @@ body::-webkit-scrollbar {
 	}
 }
 
+[data-is-mobile="true"]{
+	display: none;
+}
+
+.background-overlap{
+	z-index: -1;
+	filter: opacity(0.2) brightness(1.2);
+	-webkit-filter: opacity(0.2) brightness(1.2);
+}
+
 .callout {
 	padding: 1.25rem;
 	margin-top: 1.25rem;
