@@ -13,25 +13,42 @@ let srcX = 0;
 let srcY = 0;
 let delay = 0;
 let direction = 0;
+let isMobile = navigator.userAgentData.mobile;
 
 let visibleLimit = 50; // percent
 let scrollDirection = 0;
 
 window.addEventListener('load', readyToScroll);
+// pc ver
 scrHandler.addEventListener('mousedown', mdownHandler);
 window.addEventListener('mouseup', mupHandler);
 window.addEventListener('mousemove', dragHandler);
+// Detect mobile
+window.addEventListener('resize', agentDetectHandler);
+
 window.addEventListener('scroll', visibleHandler);
+
+function agentDetectHandler (ev){
+    let w = document.body.getBoundingClientRect().width;
+    if(w<500) isMobile = true;
+    else isMobile = false;
+}
 
 function visibleHandler(ev) {
     let y = window.scrollY;
     let maxY = window.innerHeight;
     let calcLimit = maxY * visibleLimit / 100;
-    if (scrollDirection < y) {
+    if(isMobile){
+        scrHandler.dataset.isMobile = true;
+        scrHandler.classList.remove('show');
+    } else {
+        scrHandler.dataset.isMobile = '';
+    }
+    if (scrollDirection < y && !isMobile) {
         if (y > calcLimit) {
             scrHandler.classList.add('show');
         }
-    } else if (scrollDirection > y) {
+    } else if (scrollDirection > y && !isMobile) {
         // console.log('up');
         if(y < calcLimit){
             scrHandler.classList.remove('show');
@@ -40,7 +57,12 @@ function visibleHandler(ev) {
     scrollDirection = y;
 }
 
+/**
+ * Mouse Handler
+ */
+
 function mdownHandler(ev) {
+    if(isMobile) return;
     isClick = true;
     srcX = ev.layerX;
     srcY = ev.layerY;
@@ -50,6 +72,7 @@ function mdownHandler(ev) {
 }
 
 function mupHandler(ev) {
+    if(isMobile) return;
     if (isClick) {
         scrHandler.classList.toggle('selected');
         scrArrow.innerHTML = `<i class="fas fa-arrows-alt-v"></i>`;
@@ -82,6 +105,7 @@ function mupHandler(ev) {
 }
 
 function dragHandler(ev) {
+    if(isMobile) return;
     if (isClick) {
         const originY = scrHandler.offsetTop;
         let y = ev.y - srcY;
@@ -122,6 +146,14 @@ function dragHandler(ev) {
 
         direction = ev.y;
     }
+}
+
+/**
+ * touchHandler
+ */
+
+function touchValidHandler(ev) {
+    isMobile = true;
 }
 
 function readyToScroll(ev) {
