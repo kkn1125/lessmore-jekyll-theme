@@ -34,31 +34,9 @@ var documents = [
     }{% if forloop.last %}{% else %}, {% endif %}{% endfor %}
 ];
 
-// var trimmerEnKo = function(token) {
-//     console.log(token)
-//     token.str = token.str
-//     .replace(/^[^\w가-힣]+/, '')
-//     .replace(/[^\w가-힣]+$/, '')
-//     return token;
-// };
 
 var idx = lessmore(function () {
-    //this.pipeline.reset();
-    //this.pipeline.add(
-    //    trimmerEnKo,
-    //    lunr.stopWordFilter,
-    //    lunr.stemmer
-    //);
-    
-    //this.field('id');
-    //this.field('url');
-    //this.field('title');
-    //this.field('body');
-    //this.field('author');
-    //this.field('category');
-    //this.field('tag');
-
-    documents.forEach(function (doc) {
+        documents.forEach(function (doc) {
         this.add(doc)
     }, this)
 });
@@ -73,9 +51,9 @@ function lessmore_search(term) {
     
     document.getElementById('lunrsearchresults').innerHTML = '<div id="resultsmodal" class="modal fade show d-block"  tabindex="-1" role="dialog" aria-labelledby="resultsmodal"> <div class="modal-dialog shadow-lg" role="document"> <div class="modal-content"> <div class="modal-header" id="modtit"> <button type="button" class="close btn btn-sm btn-danger" id="btnx" data-dismiss="modal" aria-label="Close"> &times; </button> </div> <div class="modal-body"> <ol class="mb-0"> </ol>    </div> <div class="modal-footer"><button id="btnx" type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button></div></div> </div></div>';
     if(term) {
-        document.getElementById('modtit').innerHTML = "<h5 class='modal-title'>Search results for '" + term + "'</h5>" + document.getElementById('modtit').innerHTML;
-        //put results on the screen.
         var results = idx.search(term);
+        document.getElementById('modtit').innerHTML = `<h5 class='modal-title'>${term}로 찾은 검색 결과 (${results.length})</h5>` + document.getElementById('modtit').innerHTML;
+        //put results on the screen.
         if(results.length>0){
             //console.log(idx.search(term));
             //if results
@@ -88,7 +66,7 @@ function lessmore_search(term) {
                 document.querySelectorAll('#lunrsearchresults ol')[0].innerHTML = document.querySelectorAll('#lunrsearchresults ol')[0].innerHTML + "<li class='lunrsearchresult'><a href='" + url + "'><span class='title'>" + title + "</span><br /><small><span class='body'>"+ body +"</span><br /><span class='url'>"+ url +"</span></small></a></li>";
             }
         } else {
-            document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = "<li class='lunrsearchresult'>"+term+"은 찾을 수 없는 단어 입니다.</li>";
+            document.querySelectorAll('#lunrsearchresults ol')[0].innerHTML = "<li class='lunrsearchresult'>"+term+"은 찾을 수 없는 단어 입니다.</li>";
         }
         document.getElementById('lunrsearch').value='';
     }
@@ -107,5 +85,12 @@ function lessmore_search(term) {
 
 
 <form class="bd-search hidden-sm-down" onSubmit="return lessmore_search(document.getElementById('lunrsearch').value);">
-<input type="text" class="form-control text-small"  id="lunrsearch" name="q" value="" placeholder="Type keyword and enter..."> 
+<!-- <input type="text" class="form-control text-small"  id="lunrsearch" name="q" value="" placeholder="검색할 키워드를 입력 후 엔터키를 누르세요">  -->
+
+<div class="search btn-bundle g-0 my-5">
+    <input id="lunrsearch" name="q" value="" type="text" class="form-input form-input-lg col" placeholder="검색어를 입력해주세요.">
+    <button class="btn btn-lg btn-info">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
 </form>

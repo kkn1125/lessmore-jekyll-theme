@@ -1,32 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand p-0" href="{{site.url}}{{site.baseurl}}">
-            <div class="d-flex align-items-center">
-                <img class="img-fluid" src="{{site.baseurl}}/{{site.logo}}" alt="logo" style="width: 40px;">
-                <span class="fw-bold text-muted">
-                    {{site.title}}
-                </span>
-            </div>
-        </a>
-        <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                {% include menu-list.html %}
-
-            </ul>
-            <!-- 210810 darkmodebtn id="mtWrap" -->
-            <div class="mx-lg-3">
-                <button id="modeToggle" class="btn btn-sm btn-light">
-                    <i class="fas fa-moon fa-2x"></i>
-                </button>
-            </div>
-
-            {% include search-lessmore.html %}
-
+<!-- nav -->
+<nav class="gnb position-sticky bg-light us-none gnb-primary">
+    <div class="gnb-inner gnb-expand-md hide align-items-center">
+        <div class="brand fw-bold">
+            <a href="{{site.baseurl}}/">
+                <span class="w-inline-block" style="background-image: url({{site.baseurl}}/{{site.logo}}); background-repeat: no-repeat; background-size: cover; width: 40px; height: 40px; top: 10px;position: relative"></span> LessMore
+            </a>
         </div>
+        <ul class="gnb-menu gx-2 w-flex justify-content-end" style="flex: 1 1 0%; width: auto; column-gap: 1rem;">
+            <li>
+                <button class="btn btn-gray px-2 me-2" data-target="#rsb">
+                    <i class="fas fa-bars fs-3"></i>
+                </button>
+            </li>
+        </ul>
     </div>
 </nav>
