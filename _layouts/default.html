@@ -26,28 +26,33 @@
 
         <link rel="manifest" href="{{site.baseurl}}/{{site.favicon}}/manifest.json">
 
-        <!-- JQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- preload -->
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" as="style">
+        <link rel="preload" href="https://unpkg.com/aos@next/dist/aos.css" as="style">
 
-        <!-- font awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-            integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" as="style">
+        
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@52b4a23/docs/assets/css/penli.css" as="style">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@52b4a23/docs/assets/css/penli.theme.css" as="style">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/typer@update-v020/typer.css" integrity="sha384-WlGS/BGsTdvbKjfrZ9IJE45xkq8xElk1ASfEwycwMlwu0DO+shSOgBF/odcC4afX" crossorigin="anonymous" as="style">
+        <link rel="preload" href="{{site.baseurl}}/assets/css/syntax.css" as="style">
+        <link rel="preload" href="{{site.baseurl}}/assets/css/theme.css" as="style">
 
-        <!-- googl font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-            rel="stylesheet">
-
-        <!-- AOS js -->
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/typer@update-v020/typer.js"
+        integrity="sha384-s62GQWchBcBh82YhldUNQK9Cqw6iFB+eBau07ihjICofE7TLkSimbCI4+djd4soo" crossorigin="anonymous" as="script">
+        <link rel="preload" href="https://unpkg.com/aos@next/dist/aos.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@52b4a23/docs/assets/js/penli.js" as="script">
+        <link rel="preload" href="{{site.baseurl}}/assets/js/darkMode.js" as="script">
+        <link rel="preload" href="{{site.baseurl}}/assets/js/theme.js" as="script">
+        <link rel="preload" href="{{site.baseurl}}/assets/js/scrollViewer.js" as="script">
+        <link rel="preload" href="{{site.baseurl}}/assets/js/selectView.js" as="script">
+        <link rel="preload" href="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous" as="script">
 
         <title>{{site.title}}</title>
 
         {% seo %}
-
-        <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css">
-        <link rel="stylesheet" href="{{site.baseurl}}/assets/css/syntax.css">
 
         <!-- add custom css ... -->
         {% include addHead.html %}
@@ -63,26 +68,25 @@
             <ul class="mb-0"></ul>
         </div>
 
-        <div class="">
-            <!-- Content -->
-            <main role="main" class="">
+        <div class="main">
+
+            <main>
+
+                <!-- main post -->
+                <div class="fence-full">
                 {{ content }}
                 {% if page.url == '/' %}
                 <div class="my-5 py-5" id="divider"></div>
                 {% endif %}
+                </div>
+
             </main>
+
         </div>
 
-        <script src="{{site.baseurl}}/assets/js/main.js"></script>
-
+        {% include sideBar.html %}
         {% include footer.html %}
-        {% include scrollHandler.html %}
-        <div id="pageEnd"></div>
-        <!-- add scripts ... -->
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
+        
         {% include addScript.html %}
     </body>
 

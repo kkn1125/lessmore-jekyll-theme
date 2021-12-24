@@ -1,0 +1,11 @@
+<div class="card card-pd-3 w-flex align-items-center" style="column-gap: 2em;">
+    <div class="card-title">
+        {{post.title | truncate: 20, '...'}}
+    </div>
+    <div class="content">
+        <div class="card-body">
+            {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
+        </div>
+        <time class="card-time"></time>
+    </div>
+</div>
