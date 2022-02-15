@@ -30,9 +30,9 @@ function scrollViewer(ev){
     const nav = document.querySelector('nav').clientHeight;
     const main = document.querySelector('.main').clientHeight;
     const footer = document.querySelector('footer').clientHeight;
-    const totalHeight = nav + main + footer;
-    const windowHeight = document.body.clientHeight;
-    const currentScrollPoint = document.body.scrollTop;
+    const totalHeight = parseInt(nav + main + footer);
+    const windowHeight = parseInt(document.body.clientHeight);
+    const currentScrollPoint = parseInt(document.body.scrollTop);
     
     baseHeight = totalHeight - windowHeight;
 
