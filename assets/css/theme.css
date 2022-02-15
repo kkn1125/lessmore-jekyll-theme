@@ -2,7 +2,7 @@
  * less more jekyll theme(https://github.com/kkn1125/lessmore-jekyll-theme)
  */
 
-body::-webkit-scrollbar{
+ body::-webkit-scrollbar{
 	/* display: block !important; */
 }
  
@@ -70,9 +70,12 @@ aside#rsb>div{
 	}
 }
 
+html{
+    overflow: hidden;
+}
+
 html,
 body {
-	height: 100%;
 	margin: 0;
 	padding: 0;
 }
