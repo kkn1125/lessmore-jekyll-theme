@@ -4,10 +4,16 @@ const gnb = document.querySelector('nav.gnb');
 let scrolled = 'pause';
 let scrollMaxPauseTime = 2;
 let baseHeight;
-let gap = 0;
+let gap;
+let plus = 0;
 
 window.addEventListener('resize', (ev)=>{
-    gap = Math.max(gap, window.innerHeight - document.body.clientHeight);
+    gap = window.innerHeight - document.body.clientHeight;
+    if(gap!=0){
+        plus = gap;
+    } else {
+        plus = gap;
+    }
 });
 body.addEventListener('scroll', scrollViewer);
 window.addEventListener('click', handleSideBar);
@@ -25,13 +31,12 @@ function scrollViewer(ev){
     const main = document.querySelector('.main').clientHeight;
     const footer = document.querySelector('footer').clientHeight;
     const totalHeight = nav + main + footer;
-    let currentScrollPoint = parseInt(document.body.scrollTop);
-    let windowHeight = Math.max(document.body.clientHeight, window.innerHeight);
+    const windowHeight = document.body.clientHeight;
+    const currentScrollPoint = document.body.scrollTop;
+    
+    baseHeight = totalHeight - windowHeight;
 
-    baseHeight = (totalHeight-gap) - windowHeight;
-
-    const scrollPercent = (currentScrollPoint/baseHeight)*100;
-
+    const scrollPercent = (currentScrollPoint/(baseHeight-plus))*100;
     scrolled = 'scroll';
 
     renderScrollGauge(parseFloat(scrollPercent.toFixed(2)));
