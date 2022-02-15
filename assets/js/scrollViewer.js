@@ -16,43 +16,29 @@ function handleSideBar(ev){
 }
 
 function scrollViewer(ev){
-    const scrollBarVisiblePoint = document.body.scrollHeight;
+    const baseHeight = document.body.scrollHeight - window.innerHeight;
+    const currentScrollPoint = document.body.scrollTop;
+    const scrollPercent = (currentScrollPoint/baseHeight)*100;
+
     scrolled = 'scroll';
-    // 스크롤 되는 비율을 나타내고자 한다.
-    // 1. 전체길이와 화면길이의 차이를 구한다.
-    // 2. 스크롤의 현재 위치를 구한다.
-    // console.log(window.innerHeight,scrollBarVisiblePoint)
-    if(window.innerHeight<scrollBarVisiblePoint){
-        // 윈도우 높이가 스크롤 발생지점 값보다 작다면
-        // 스크롤이 발생하기 때문에 수치화된 스크롤 비율을 나타낸다.
-        
-        const scrollMaximumValue = scrollBarVisiblePoint - window.innerHeight;
-        const currentScrollPoint = body.scrollTop;
-        const scrollPercent = (currentScrollPoint/scrollMaximumValue)*100;
-        
-        console.log()
-        renderScrollGauge(scrollPercent.toFixed(2));
-    } else {
-        // 스크롤이 없기 때문에 동작 안하도록 한다.
-    }
-    return body.scrollTop;
+
+    renderScrollGauge(parseFloat(scrollPercent.toFixed(2)));
 }
 
 function renderScrollGauge(gaugeValue){
     const gauge = body.querySelector('#scrollGauge');
-    const validDigit = gaugeValue.toString().split('.');
-    let temp = validDigit[1] == '00'
-    ?validDigit[0]
-    :gaugeValue;
+    const validDigit = gaugeValue;
 
     if(!gauge){
-        const box = document.createElement('div');
-        box.id = 'scrollGauge';
-        box.classList.add('tag','tag-info');
-        body.append(box);
-        box.innerHTML = `<span></span><span> / </span><span>100</span>`;
+        body.insertAdjacentHTML('beforeend', `
+            <div id="scrollGauge" class="tag tag-info">
+                <span></span>
+                <span> / </span>
+                <span>100</span>
+            </div>
+        `);
     } else {
-        gauge.children[0].textContent = `${temp}`;
+        gauge.children[0].textContent = `${validDigit}`;
     }
 }
 

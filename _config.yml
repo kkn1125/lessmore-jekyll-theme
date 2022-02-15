@@ -6,7 +6,7 @@ description: 사이트를 설명하는 글귀를 적으시면 됩니다.
 favicon: assets/images/favicon
 logo: assets/images/logo/logo-black.png
 url: "https://kkn1125.github.io"
-baseurl: "/lessmore-jekyll-theme/"
+baseurl: "/lessmore-jekyll-theme"
 blog: https://kkn1125.github.io
 email: chaplet01@gmail.com
 disqus: "devkimson"
@@ -19,7 +19,7 @@ author:
   kimson:
     name: kimson
     avatar: assets/images/profile.jpg
-    desc: less, more를 사랑해주셔서 감사합니다.
+    desc: less, more에 관심을 가져주셔서 감사합니다.
     web: https://kkn1125.github.io
     github: https://github.com/kkn1125
 

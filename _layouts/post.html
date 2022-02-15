@@ -4,63 +4,67 @@ layout: default
 
 {% assign author = site.author[page.author] %}
 
+<div class="position-relative posts">
+    {% if page.image %}
+    <div
+        style="background-image: url({% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}); background-size: cover; background-repeat: no-repeat; height: 25rem; filter: brightness(0.3);"
+        title="{{ page.title }}">
+    </div>
+    {% endif %}
 
-
-<div class="">
-
-    <div class="mb-3 ps-0 pt-0 pb-0 position-fixed top-0 start-0 end-0" style="height: 20rem; margin-top: 56px;">
-
-        {% if page.image %}
-        <div class="pe-0"
-            style="background-image: url({% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}); background-size: cover; background-repeat: no-repeat; height: 25rem; filter: brightness(0.3);"
-            title="{{ page.title }}">
-        </div>
-        {% endif %}
-
-        <div class="position-absolute top-50 start-50 translate-middle container text-white">
-            <div class="row justify-content-center">
-                <div
-                    class="{% if page.image %} col-md-12 {% else %} col-md-8 {% endif %} pr-0 pr-md-4 pt-4 pb-4 align-self-center">
-                    <p class="text-uppercase font-weight-bold">
-                        <span class="catlist">
-                            {% for category in page.categories %}
-                            <a class="sscroll text-warning"
-                                href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category | downcase }}</a>
-                            {% if category != page.categories.last %}
-                            <span class="sep">, </span>
-                            {% endif %}
-                            {% endfor %}
-                        </span>
-                    </p>
-                    <h1 class="display-4 mb-4 article-headline">{{ page.title }}</h1>
-                    <div class="d-flex align-items-center">
-                        {% if author.avatar %}
-                        <img class="rounded-circle" src="{{site.baseurl}}/{{author.avatar}}" alt="{{author.name}}"
-                            width="70" height="70" style="object-fit: cover;">
+    <div class="position-absolute top-50 position-middle-y text-white">
+        <div class="w-flex justify-content-center">
+            <div
+                class="col-20 col-md-18 align-self-center">
+                <p class="text-uppercase font-weight-bold">
+                    
+                    <span class="catlist">
+                        {% for category in page.categories %}
+                        <a class="sscroll text-warning"
+                            href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category | downcase }}</a>
+                        {% if category != page.categories.last %}
+                        <span class="sep">, </span>
                         {% endif %}
-                        <small class="ms-3"> {{ author.name }} <span><a target="_blank" href="{{ author.github }}"
-                                    class="btn btn-success btn-sm btn-round ml-1">Follow</a></span>
-                            <span class="text-light d-block mt-1">{{ page.date | date: '%b %d, %Y' }} |
-                                {% include meta-read-time.html %}</span>
+                        {% endfor %}
+                    </span>
+
+                </p>
+                <h1 class="h1 mb-4 article-headline">{{ page.title }}</h1>
+                <div class="w-flex align-items-center">
+                    {% if author.avatar %}
+                    <img class="rounded-circle" src="{{site.baseurl}}/{{author.avatar}}" alt="{{author.name}}"
+                        width="70" height="70" style="object-fit: cover;">
+                    {% endif %}
+                    <div class="w-flex flex-column ms-3">
+                        <span>
+                            <span>
+                                {{ author.name }}
+                            </span>
+                            <span>
+                                <a target="_blank" href="{{ author.github }}" class="btn btn-frame-success btn-sm btn-round ml-1">Follow</a>
+                            </span>
+                        </span>
+                        <small class="fs-7">
+                            <span class="text-light d-block mt-1">
+                            {{ page.date | date: '%Y. %m. %d. %H:%M' }} |
+                            {% include meta-read-time.html %}
+                            </span>
                         </small>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 </div>
 
-<div class="my-4 py-5" id="divider" style="height: 20rem;"></div>
-
 <div class="bg-white w-100 position-relative pt-5" style="z-index: 15;">
 
     <div class="container-lg pt-5 pb-4">
-        <div class="row justify-content-center">
+        <div class="w-flex justify-content-center">
 
             <!-- Share -->
-            <div class="col-lg-2 pr-4 mb-4 col-md-12">
+            <div class="col-lg-2 pe-4 mb-4 col-md-12">
                 <div class="sticky-top sticky-top-offset text-center">
                     <div class="text-muted">
                         Share this
@@ -87,11 +91,11 @@ layout: default
 
                 <!-- Tags -->
                 <div class="mb-4">
-                    <span class="text-capitalize">tags</span>
+                    <span class="text-capitalize fs-7">tags</span>
                     <span> · </span>
                     <span class="taglist">
                         {% for tag in page.tags %}
-                        <a class="sscroll btn btn-danger btn-sm font-weight-bold"
+                        <a class="tag tag-danger fw-bold"
                             href="{{site.baseurl}}/tags.html#{{ tag | downcase }}">{{ tag | downcase }}</a>
                         {% endfor %}
                     </span>
@@ -99,17 +103,17 @@ layout: default
 
                 <!-- Author Box -->
                 {% if page.author %}
-                <div class="row mt-5">
-                    <div class="col-md-2 align-self-center">
+                <div class="w-flex mt-5">
+                    <div class="align-self-center me-5">
                         {% if author.avatar %}
                         <img class="rounded-circle" src="{{site.baseurl}}/{{author.avatar}}" alt="{{author.name}}"
                             width="90" height="90" style="object-fit: cover;">
                         {% endif %}
                     </div>
-                    <div class="col-md-10">
+                    <div class="col">
                         <h5 class="fw-bold">Author {{ author.name }} {% if author.twitter %}<span><a target="_blank"
                                     href="{{ author.github }}"
-                                    class="btn btn-outline-success btn-sm btn-round ml-2">Follow</a></span>{% endif %}
+                                    class="btn btn-frame-success btn-sm btn-round ml-2">Follow</a></span>{% endif %}
                         </h5>
                         {{ author.desc }}
                     </div>

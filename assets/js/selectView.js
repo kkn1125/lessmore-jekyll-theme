@@ -1,49 +1,52 @@
-const viewWrap = document.querySelector('#viewWrap');
 const latestBtn = document.querySelector('#latestBtn');
 const latestPosts = document.querySelector('.latest-posts');
-const validTime = 1000*60*60*24;
-let hiddenInfo;
-
-function isHidden(){
-    return getHiddenInfo().hidden;
-}
-
-function getHiddenInfo(){
-    if(!localStorage['isHidden']) localStorage['isHidden'] = '{}';
-    return JSON.parse(localStorage['isHidden']);
-}
-
-function setHiddenInfo(data){
-    localStorage['isHidden'] = JSON.stringify(data);
-}
-
-hiddenInfo = getHiddenInfo();
-
-if(isHidden()){
-    // 히든일 때
-    if(getHiddenInfo()['maxTime']<new Date().getTime()){
-        // 새로 갱신
-        hiddenInfo['hidden'] = false;
-        setHiddenInfo(hiddenInfo);
-        // 다시 최신글 보여줘야함
-        latestPosts.removeAttribute('hidden');
-    } else {
-        // 최신 글 히든
-        latestPosts.hidden = true;
-    }
-}
+const allPosts = document.querySelector('.all-posts');
 
 window.addEventListener('click', handleView);
 
-function handleView(ev){
-    const target = ev.target;
-    if(target.id != 'latestBtn') return;
-    
-    if(target.dataset.btn == 'latest' && !isHidden()){
-        setHiddenInfo({
-            maxTime: new Date().getTime() + validTime,
-            hidden: true
-        });
+/**
+ * 토글 방식으로 변경
+ */
+if(allPosts && latestBtn){
+    if (isHidden()) {
         latestPosts.hidden = true;
+        allPosts.removeAttribute('hidden');
+        latestBtn.innerHTML = '최신 글';
+    } else {
+        allPosts.hidden = true;
+        latestPosts.removeAttribute('hidden');
+        latestBtn.innerHTML = '모든 글';
     }
+}
+
+/**
+ * 토글 방식으로 변경
+ */
+function handleView(ev) {
+    const target = ev.target;
+    if (target.id != 'latestBtn') return;
+
+    latestPosts.hidden = !isHidden();
+    allPosts.hidden = isHidden();
+    setHiddenInfo(!isHidden());
+
+    latestBtn.innerHTML = isHidden() ? '최신 글' : '모든 글';
+}
+
+function isHidden() {
+    return getHiddenInfo().hidden;
+}
+
+function getHiddenInfo() {
+    if (!localStorage['isHidden']) localStorage['isHidden'] = '{"hidden": false}';
+    const hiddenInfo = JSON.parse(localStorage['isHidden']);
+    if (hiddenInfo.hasOwnProperty('maxTime')) localStorage['isHidden'] = '{"hidden": false}';
+    // 이전 버전 초기화
+    return hiddenInfo;
+}
+
+function setHiddenInfo(data) {
+    localStorage['isHidden'] = JSON.stringify({
+        hidden: data
+    });
 }

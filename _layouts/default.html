@@ -32,8 +32,9 @@
 
         <link rel="preload" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" as="style">
         
-        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@52b4a23/docs/assets/css/penli.css" as="style">
-        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@52b4a23/docs/assets/css/penli.theme.css" as="style">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@d905936/docs/assets/css/penli.css" as="style">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@d905936/docs/assets/css/penli.theme.css" as="style">
+
         <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/typer@update-v020/typer.css" integrity="sha384-WlGS/BGsTdvbKjfrZ9IJE45xkq8xElk1ASfEwycwMlwu0DO+shSOgBF/odcC4afX" crossorigin="anonymous" as="style">
         <link rel="preload" href="{{site.baseurl}}/assets/css/syntax.css" as="style">
         <link rel="preload" href="{{site.baseurl}}/assets/css/theme.css" as="style">
@@ -41,11 +42,12 @@
         <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/typer@update-v020/typer.js"
         integrity="sha384-s62GQWchBcBh82YhldUNQK9Cqw6iFB+eBau07ihjICofE7TLkSimbCI4+djd4soo" crossorigin="anonymous" as="script">
         <link rel="preload" href="https://unpkg.com/aos@next/dist/aos.js" as="script">
-        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@52b4a23/docs/assets/js/penli.js" as="script">
         <link rel="preload" href="{{site.baseurl}}/assets/js/darkMode.js" as="script">
         <link rel="preload" href="{{site.baseurl}}/assets/js/theme.js" as="script">
         <link rel="preload" href="{{site.baseurl}}/assets/js/scrollViewer.js" as="script">
         <link rel="preload" href="{{site.baseurl}}/assets/js/selectView.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/gh/kkn1125/penli@d905936/docs/assets/js/penli.js" as="script">
+
         <link rel="preload" href="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
         crossorigin="anonymous" as="script">
@@ -59,6 +61,16 @@
     </head>
 
     <body>
+        <script>
+            const mode = JSON.parse(sessionStorage['mode']);
+            if(mode){
+                if(mode.dark=='on'){
+                    document.body.classList.add('dark');
+                } else {
+                    document.body.classList.remove('dark');
+                }
+            }
+        </script>
         <script src="{{site.baseurl}}/assets/js/darkMode.js"></script>
 
         {% include nav.html %}
@@ -73,7 +85,7 @@
             <main>
 
                 <!-- main post -->
-                <div class="fence-full">
+                <div class="">
                 {{ content }}
                 {% if page.url == '/' %}
                 <div class="my-5 py-5" id="divider"></div>

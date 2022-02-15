@@ -1,6 +1,8 @@
-<div class="card card-pd-3 w-flex align-items-center" style="column-gap: 2em;">
+<div class="card w-flex align-items-center">
     <div class="card-title">
-        {{post.title | truncate: 20, '...'}}
+        <a href="{{site.baseurl}}{{post.url}}" title="{{post.title}}">
+            {{post.title}}
+        </a>
     </div>
     <div class="content">
         <div class="card-body">
