@@ -14,8 +14,7 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 
 {% if page.url=='/' %}
 <div class="fence-full">
-    <div><span class="h3">Hello</span></div>
-    <div class="card card-pd-3 w-flex align-items-center" style="column-gap: 2em;">
+    <div class="card card-pd-3 w-flex align-items-center mt-5" style="column-gap: 2em;">
         <div class="col-auto">
             <img class="rounded-3" width="150" height="150" style="aspect-ratio: 9/9" src="https://avatars.githubusercontent.com/u/71887242?v=4" alt="profile">
         </div>
@@ -52,18 +51,18 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 {% endif %}
 
 <div id="viewWrap" class="mt-5 fence-full">
-    <button id="latestBtn" data-btn="latest" class="btn btn-warning mb-5">모든 글</button>
+    <button id="latestBtn" data-btn="latest" class="btn btn-info mb-5">모든 글</button>
 
     <div class="latest-posts">
         <div class="w-flex align-items-center justify-content-between">
-            <span class="h3">Latest</span>
+            <span class="h3 serif">Latest</span>
         </div>
-        <ul class="list-group">
+        <ul class="list-group flex-row-lg flex-wrap">
 
             {% for post in site.posts %}
             {% if post.featured %}
 
-            <li class="list-item">
+            <li class="list-item col border-bottom">
                 <div>
                     <span class="h5"><a href="{{site.baseurl}}{{post.url}}" class="link-title">{{post.title | truncate: 20, '...'}}</a></span>
                     <span>{{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}</span>
@@ -79,8 +78,8 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 
     <div class="all-posts">
         <div class="w-flex align-items-center justify-content-between">
-            <span class="h3">All Posts</span>
-            <div class="float-end">{{site.posts | size}}
+            <span class="h3 serif">All Posts</span>
+            <div class="float-end tag tag-danger">{{site.posts | size}}
                 {% assign size = site.posts | size %}
                 {% if size > 1 %}
                 posts

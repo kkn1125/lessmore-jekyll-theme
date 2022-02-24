@@ -39,7 +39,7 @@ function scrollViewer(ev){
     const scrollPercent = (currentScrollPoint/(baseHeight-plus))*100;
     scrolled = 'scroll';
 
-    renderScrollGauge(parseFloat(scrollPercent.toFixed(2)));
+    renderScrollGauge(parseFloat(scrollPercent.toFixed(0)));
 }
 
 function renderScrollGauge(gaugeValue){
