@@ -13,49 +13,38 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 {% assign author = site.author[site.nickname] %}
 
 {% if page.url=='/' %}
-<div class="fence-full">
-    <div class="card card-pd-3 w-flex align-items-center mt-5" style="column-gap: 2em;">
-        <div class="col-auto">
-            <img class="rounded-3" width="150" height="150" style="aspect-ratio: 9/9" src="https://avatars.githubusercontent.com/u/71887242?v=4" alt="profile">
-        </div>
-        <div class="col">
-            <div class="card-title">
-                Kimson
-            </div>
-            <div class="mb-2 w-flex" style="column-gap: 1em;">
-                <a href="https://kkn1125.github.io/" class="btn btn-sm btn-outline-dark border-0">
-                    <i class="fab fa-github-alt fa-2x"></i>
-                </a>
-                <a href="https://kkn1125.github.io/contact" class="btn btn-sm btn-outline-dark border-0">
-                    <i class="far fa-envelope fa-2x"></i>
-                </a>
-            </div>
-            <div class="content">
-            <div class="card-body">
-                <div data-typer-name="desc" data-typer-loop="true" data-typer-erase-mode="true" data-typer-erase-speed="0.05">{{site.description}}</div>
-            </div>
-            </div>
-        </div>
+<div class="w-flex align-items-center justify-content-center p-5 g-5 text-center">
+    <div class="col-auto m-0">
+        <img class="rounded-circle" width="150" height="150" style="aspect-ratio: 9/9" src="{{site.author.kimson.avatar}}" alt="profile">
     </div>
-    <div>
-        {% include search-lessmore.html %}
-        <!-- <div class="search btn-bundle g-0 my-5">
-            <input type="text" class="form-input form-input-lg col" placeholder="검색어를 입력해주세요.">
-            <button class="btn btn-lg btn-info">
-                <i class="fas fa-search"></i>
-            </button>
-        </div> -->
+    <div class="col-20">
+        <div class="card-title">
+            Kimson
+        </div>
+        <div class="mb-2 w-flex justify-content-center" style="column-gap: 1em;">
+            <a href="https://kkn1125.github.io/" class="btn btn-sm btn-outline-dark border-0">
+                <i class="fab fa-github-alt fa-2x"></i>
+            </a>
+            <a href="https://kkn1125.github.io/contact" class="btn btn-sm btn-outline-dark border-0">
+                <i class="far fa-envelope fa-2x"></i>
+            </a>
+        </div>
+        <div class="content">
+        <div class="card-body">
+            <div data-typer-name="desc" data-typer-loop="true" data-typer-erase-mode="true" data-typer-erase-speed="0.05">{{site.description}}</div>
+        </div>
+        </div>
     </div>
 </div>
 
 {% endif %}
 
 <div id="viewWrap" class="mt-5 fence-full">
-    <button id="latestBtn" data-btn="latest" class="btn btn-info mb-5">모든 글</button>
+    <button id="latestBtn" data-btn="latest" class="btn btn-brand mb-5">모든 글</button>
 
     <div class="latest-posts">
         <div class="w-flex align-items-center justify-content-between">
-            <span class="h3 serif">Latest</span>
+            <span class="h3 sunflower">Latest</span>
         </div>
         <ul class="list-group flex-row-lg flex-wrap">
 
@@ -64,7 +53,9 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 
             <li class="list-item col border-bottom">
                 <div>
-                    <span class="h5"><a href="{{site.baseurl}}{{post.url}}" class="link-title">{{post.title | truncate: 20, '...'}}</a></span>
+                    <span class="h5"><a href="{{site.baseurl}}{{post.url}}" class="link-title">{{post.title}}</a></span>
+                    <time class="text-gray fs-7">{{post.date | date: "%Y. %m. %d. %H:%M"}}</time>
+                    <br>
                     <span>{{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}</span>
                     <span></span>
                 </div>
@@ -78,7 +69,7 @@ description: "나를 표현하는 블로그. 끊임없이 도전하고 공부하
 
     <div class="all-posts">
         <div class="w-flex align-items-center justify-content-between">
-            <span class="h3 serif">All Posts</span>
+            <span class="h3 sunflower">All Posts</span>
             <div class="float-end tag tag-danger">{{site.posts | size}}
                 {% assign size = site.posts | size %}
                 {% if size > 1 %}

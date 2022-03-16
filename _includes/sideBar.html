@@ -1,16 +1,23 @@
-<aside id="rsb" style="width: 45%" class="side-bar built-in hide bg-primary" data-side-bar="right">
+<aside id="rsb" style="width: 45%" class="side-bar built-in hide" data-side-bar="right">
     <div class="p-5 border flex-basis-100 text-white">
         <div class="position-static position-sticky-sm" style="top: 111.375px;">
             <div class="w-flex justify-content-between align-items-center mb-5">
-                <span class="menu-title text-uppercase">Menu</span>
+                <span class="menu-title text-uppercase sunflower">📚 Menu</span>
                 <span><button class="w-sm-none w-inline-block custom-btn" id="delBtn">&times;</button></span>
             </div>
-            <ul class="list-group">
+            <ul class="list-group sunflower">
+                {% assign categories_list = site.categories %}
+                {% if categories_list.first[0] == null %}
+                    {% for category in categories_list %}
+                    <li><a href="{{site.baseurl}}/category/{{ category | downcase | downcase | url_escape | strip | replace: ' ', '-' }}">{{ category | camelcase }} ({{ site.tags[category].size }})</a></li>
+                    {% endfor %}
+                {% else %}
+                    {% for category in categories_list %}
+                    <li><a href="{{site.baseurl}}/category/{{ category[0] | downcase | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | camelcase }} ({{ category[1].size }})</a></li>
+                    {% endfor %}
+                {% endif %}
                 <li class="list-item">
-                    <a href="blog">Blog</a>
-                </li>
-                <li class="list-item">
-                    <a href="about">About</a>
+                    <a href="{{site.baseurl}}/about">About</a>
                 </li>
                 <li class="list-item">
                     <!-- darkmode -->

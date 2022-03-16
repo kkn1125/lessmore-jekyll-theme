@@ -12,16 +12,16 @@ layout: default
     </div>
     {% endif %}
 
-    <div class="position-absolute top-50 position-middle-y text-white">
+    <div class="position-absolute top-50 position-middle-y text-white w-100">
         <div class="w-flex justify-content-center">
             <div
-                class="col-20 col-md-18 align-self-center">
+                class="col-20 col-md-18 align-self-center px-5">
                 <p class="text-uppercase font-weight-bold">
                     
                     <span class="catlist">
                         {% for category in page.categories %}
                         <a class="sscroll text-warning"
-                            href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category | downcase }}</a>
+                            href="{{site.baseurl}}/category/{{ category | downcase }}">{{ category | downcase }}</a>
                         {% if category != page.categories.last %}
                         <span class="sep">, </span>
                         {% endif %}
@@ -58,13 +58,13 @@ layout: default
 
 </div>
 
-<div class="bg-white w-100 position-relative pt-5" style="z-index: 15;">
+<div class="w-100 position-relative pt-5" style="z-index: 15;">
 
-    <div class="container-lg pt-5 pb-4">
+    <div class="py-5">
         <div class="w-flex justify-content-center">
 
             <!-- Share -->
-            <div class="col-lg-2 pe-4 mb-4 col-md-12">
+            <div class="col-4 col-lg-2 mb-4">
                 <div class="sticky-top sticky-top-offset text-center">
                     <div class="text-muted">
                         Share this
@@ -82,7 +82,7 @@ layout: default
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-8">
+            <div class="fence-full col-lg-18 px-lg-5">
 
                 <!-- Article -->
                 <article class="article-post">

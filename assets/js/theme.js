@@ -77,3 +77,7 @@ function loadSearch(){
         })
     })
 }
+
+String.prototype.marking = function(keyword) {
+    return this.replace(new RegExp(keyword, 'gim'), `<span class="text-mark">$&</span>`);
+}

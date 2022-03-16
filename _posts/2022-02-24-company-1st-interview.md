@@ -3,7 +3,7 @@ layout: post
 date:   2022-02-24 14:27:20 +0900
 title:  "Company 1st interview!"
 author: kimson
-categories: [ communication, people ]
+categories: [ tutorial, test ]
 tags: [first, life]
 image: assets/images/post/covers/cover-02.jpg
 description: "블로그 홈에서 나타나는 간단한 설명 글 입니다."

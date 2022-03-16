@@ -1,12 +1,15 @@
 /*!
  * less more jekyll theme(https://github.com/kkn1125/lessmore-jekyll-theme)
  */
+@import 'mixin.scss';
 
 body::-webkit-scrollbar {
     /* display: block !important; */
 }
 
 :root {
+    --lm-gf-gugi: 'Gugi', cursive;
+    --lm-gf-sunflower: 'Sunflower', sans-serif;
     --lm-gf-noto: 'Noto Sans KR', sans-serif;
     --lm-gf-noto-serif: 'Noto Serif KR', serif;
     --lm-color-dark: rgb(22, 22, 22);
@@ -21,18 +24,27 @@ body::-webkit-scrollbar {
 $hSize: 1;
 
 @while $hSize<=6 {
-    h#{7 - $hSize}{
+    h#{7 - $hSize} {
         font-size: $hSize * 0.25 + 1 + rem;
         font-weight: bold;
     }
-    $hSize: $hSize + 1;
+
+    $hSize: $hSize+1;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .brand {
-    font-family: var(--lm-gf-noto-serif);
+    font-family: var(--lm-gf-sunflower);
 }
 
-.serif{
+.sunflower {
+    font-family: var(--lm-gf-sunflower);
+}
+
+.serif {
     font-family: var(--lm-gf-noto-serif);
 }
 
@@ -160,7 +172,9 @@ body {
     justify-content: center;
 }
 
-menu, ol, ul:not(.nav, .gnb-menu, .list-group){
+menu,
+ol,
+ul:not(.nav, .gnb-menu, .list-group) {
     list-style: revert;
 }
 
@@ -212,11 +226,79 @@ a[href] {
     }
 }
 
+img {
+    object-fit: cover;
+}
+
 /* dark mode */
+
+.gnb {
+    // --text-opacity: 1;
+    // --bg-opacity: 1;
+    // --gnb-bg: var(--pl-primary-rgb-3);
+    // color: rgba(var(--pl-white-rgb), var(--text-opacity));
+    // background-color: rgba(var(--gnb-bg), var(--bg-opacity)) !important;
+    background-color: white;
+
+    [class*="gnb-expand-"] .gnb-menu {
+        transition: none;
+        -webkit-transition: none;
+        -moz-transition: none;
+        -ms-transition: none;
+        -o-transition: none;
+    }
+}
+
+#cursor {
+    pointer-events: none;
+    position: absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    z-index: 3000;
+    transition: 100ms ease;
+    -webkit-transition: 100ms ease;
+    -moz-transition: 100ms ease;
+    -ms-transition: 100ms ease;
+    -o-transition: 100ms ease;
+
+    &.on-btn,
+    &.on-link {
+        width: 70px;
+        height: 70px;
+        background-color: rgba(var(--pl-brand-rgb), var(--bg-opacity)) !important;
+    }
+}
 
 body {
     &.dark {
         background-color: #2a2b31;
+        color: white;
+
+        span,
+        div,
+        time,
+        p {
+            color: inherit;
+        }
+
+        .gnb {
+            --text-opacity: 1;
+            --bg-opacity: 1;
+            --gnb-bg: 32, 33, 37;
+            color: rgba(var(--pl-white-rgb), var(--text-opacity));
+            background-color: rgba(var(--gnb-bg), var(--bg-opacity)) !important;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        #a2apage_mini_services {
+            a {
+                color: revert;
+            }
+        }
 
         .modal-content {
             background-color: #555555;
@@ -243,6 +325,10 @@ body {
                     color: #949494 !important;
                 }
             }
+        }
+
+        .footer {
+            background-color: #202125;
         }
     }
 }
@@ -306,23 +392,41 @@ label {
     }
 }
 
+#searcher {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1250;
+}
+
+.text-mark {
+    background-color: #66ff99;
+}
+
 /* modals */
 .modal {
     position: fixed;
-    top: 64.53px;
+    top: 0;
+    // top: 64.53px;
     left: 0;
-    z-index: 1055;
+    z-index: 1250;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     outline: 0;
-    height: calc(100% - 64.53px);
+    // height: calc(100% - 64.53px);
+    background-color: rgba(0, 0, 0, .5);
 
     .modal-dialog {
         position: relative;
         width: auto;
-        margin: .5rem;
         pointer-events: none;
 
         .modal-content {
@@ -361,7 +465,31 @@ label {
             .modal-body {
                 position: relative;
                 flex: 1 1 auto;
-                padding: 1rem
+                padding: 1rem;
+
+                ol {
+                    padding-left: 1.5em;
+
+                    li.lunrsearchresult {
+                        border-bottom: 1px solid #e9e9e9;
+                        padding-bottom: 1rem;
+                        margin-bottom: 1rem;
+
+                        small {
+                            font-size: 0.8rem;
+
+                            .body {}
+
+                            .url {
+                                font-size: 0.7rem;
+                            }
+                        }
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                    }
+                }
             }
 
             .modal-footer {
@@ -484,55 +612,56 @@ label {
     }
 }
 
-@mixin modalFullScreenDown($size) {
-    $size: '' !default;
-
-    .modal-fullscreen#{$size}-down {
-        width: 100vw;
-        max-width: none;
-        height: 100%;
-        margin: 0;
-
-        .modal-content {
-            height: 100%;
-            border: 0;
-            border-radius: 0
-        }
-
-        .modal-header {
-            border-radius: 0
-        }
-
-        .modal-body {
-            overflow-y: auto
-        }
-
-        .modal-footer {
-            border-radius: 0
-        }
-    }
+.lunrsearchresult .title {
+    color: #d9230f;
 }
 
-@mixin modalFullScreenDownMedia($width) {
-    @media (max-width: ($width - 0.02 + px)) {
-        @content;
-    }
+.lunrsearchresult .url {
+    color: silver;
+}
+
+.lunrsearchresult a {
+    display: block;
+    color: #777;
+}
+
+.lunrsearchresult a:hover,
+.lunrsearchresult a:focus {
+    text-decoration: none;
+}
+
+.lunrsearchresult a:hover .title {
+    text-decoration: underline;
 }
 
 @include modalFullScreenDown('');
 
 @include modalFullScreenDownMedia(576) {
     @include modalFullScreenDown('-sm');
-};
+}
+
+;
+
 @include modalFullScreenDownMedia(768) {
     @include modalFullScreenDown('-md');
-};
+}
+
+;
+
 @include modalFullScreenDownMedia(992) {
     @include modalFullScreenDown('-lg');
-};
+}
+
+;
+
 @include modalFullScreenDownMedia(1200) {
     @include modalFullScreenDown('-xl');
-};
+}
+
+;
+
 @include modalFullScreenDownMedia(1400) {
     @include modalFullScreenDown('-xxl');
-};
+}
+
+;

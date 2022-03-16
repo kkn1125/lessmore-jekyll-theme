@@ -29,10 +29,11 @@ permalink: /:title/
 # Build settings
 plugins:
   - jekyll-feed
-  - jekyll-paginate
+  # - jekyll-paginate
   - jekyll-spaceship
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-archives
 
 # Defaults
 defaults:
@@ -49,6 +50,17 @@ defaults:
       path: "_pages"
     values:
       layout: page
+
+jekyll-archives:
+  enabled:
+  - categories
+  layout: archive
+  permalinks:
+    # year: '/:year/'
+    # month: '/:year/:month/'
+    # day: '/:year/:month/:day/'
+    # tag: '/tag/:name/'
+    category: '/category/:name/'
 
 # Syntax
 markdown: kramdown
@@ -125,8 +137,8 @@ jekyll-spaceship:
     src: https://github.githubassets.com/images/icons/emoji/
 
 # Paginate
-paginate: 10
-paginate_path: /page:num/
+# paginate: 10
+# paginate_path: /page:num/
 
 exclude:
   [
