@@ -270,6 +270,21 @@ img {
     }
 }
 
+#topArrowEL{
+    opacity: 0;
+    pointer-events: none;
+    transition: 300ms ease;
+    -webkit-transition: 300ms ease;
+    -moz-transition: 300ms ease;
+    -ms-transition: 300ms ease;
+    -o-transition: 300ms ease;
+
+    &.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
 body {
     &.dark {
         background-color: #2a2b31;

@@ -51,7 +51,7 @@
 }();
 
 (function(){
-  const topArrowEL = `<button onclick="document.body.scrollTo(0,0)" class="btn btn-warning px-1 position-fixed" style="right: 30px;bottom: 120px; z-index: 50;"><i class="fa-solid fa-arrow-turn-up" style="width: 16px;"></i></button>`;
+  const topArrowEL = `<button id="topArrowEL" onclick="document.body.scrollTo(0,0)" class="btn btn-warning px-1 position-fixed" style="right: 30px;bottom: 120px; z-index: 50;"><i class="fa-solid fa-arrow-turn-up" style="width: 16px;"></i></button>`;
   const searchBtnEL = `<div class="position-fixed" style="right: 30px; bottom: 70px; z-index: 50;">
     <button id="searchBtn" class="btn btn-brand px-1">
         <i class="fa-solid fa-magnifying-glass-plus" style="user-select: none;"></i>
@@ -80,19 +80,35 @@
     document.body.insertAdjacentHTML('beforeend', topArrowEL);
     document.body.insertAdjacentHTML('beforeend', searchBtnEL);
     document.body.insertAdjacentHTML('beforeend', searcherEL);
+    document.body.addEventListener('scroll', handleShowTopArrowEl);
   });
+
+  function handleShowTopArrowEl(e){
+    const topEL = document.querySelector('#topArrowEL');
+    if(document.body.scrollTop > parseInt(document.body.clientHeight*0.3)){
+      topEL.classList.add('show');
+    } else {
+      topEL.classList.remove('show');
+    }
+  }
   
   function handleSearchOpener(e) {
     const searcher = document.querySelector('#searcher');
+    const lunrsearch = document.querySelector('#lunrsearch');
+    const lunrsearchresults = document.querySelector('#lunrsearchresults');
     const target = e.target;
 
     if(target.closest('.search')) return;
 
     if(target.id != 'searchBtn') {
       searcher.classList.add('hidden');
+      lunrsearchresults.style.display = 'none';
       return;
     }
-    
+    setTimeout(() => {
+      lunrsearch.focus();
+    }, 10);
+
     if(searcher.classList.contains('hidden')) searcher.classList.remove('hidden');
     else searcher.classList.add('hidden');
   }
@@ -126,16 +142,15 @@
   }
   
   function handleCursor(e){
-    console.log(e)
     x = e.clientX
     y = e.clientY;
   }
   function handleCursorIn(e){
     const target = e.target;
-    if(target.tagName == 'BUTTON') {
+    if(target.closest('button')) {
       isBtn = true;
       cursor.classList.add('on-btn');
-    } else if (target.tagName == 'A') {
+    } else if (target.closest('a')) {
       isLink = true;
       cursor.classList.add('on-link');
     } else {
